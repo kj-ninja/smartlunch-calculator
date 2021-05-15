@@ -4,7 +4,7 @@
        :key="index"
        class="flex justify-between items-center px-10 mb-14">
 
-    <div class="flex flex-col w-5/12">
+    <div class="flex flex-col w-1/2">
       <span class="text-base font-600 text-secondary md:text-16">
         {{ $t(`calculator.${data.section}.${data.name}.title`) }}
       </span>
