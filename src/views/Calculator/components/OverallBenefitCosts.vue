@@ -1,6 +1,6 @@
 <template>
   <div class="input-field-container flex justify-between items-center px-10 mb-16">
-    <span class="text-base font-500 text-secondary">
+    <span class="text-base font-600 text-secondary">
       {{ $t('calculator.benefitCosts.overallCost') }}
     </span>
 

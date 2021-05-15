@@ -4,7 +4,7 @@
        class="flex justify-between items-center px-10 mb-14">
 
     <label :for="sectionInputName" class="flex flex-col w-5/12">
-      <span class="text-base font-500 text-secondary md:text-16">
+      <span class="text-base font-600 text-secondary md:text-16">
         {{ $t(`calculator.${sectionName}.${sectionInputName}`) }}
       </span>
 
