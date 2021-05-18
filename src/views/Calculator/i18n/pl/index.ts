@@ -1,9 +1,8 @@
 export default {
   currency: 'zł',
   header: {
-    checkProfit: 'Sprawdź ile zyskasz ze Smartlunch',
     title: 'Kalkulator benefitów',
-    description: 'Poniższe narzędzie pozwala obliczyć realną wartość benefiów pozapłacowych '
+    description: 'Poniższe narzędzie pozwala obliczyć realną wartość benefitów pozapłacowych '
       + 'Twoich pracowników. Wypełnij odpowiednie pola, aby poznać realny zysk dla pracownika.',
   },
   benefitName: {
@@ -13,11 +12,11 @@ export default {
     placeholder: 'Podaj nazwę benefitu',
   },
   benefitCosts: {
-    title: 'Koszta benefitu',
+    title: 'Koszty benefitu',
     employerCost: 'Koszt pracodawcy',
-    employerCostDesc: 'Kwota, jaką pracodawca płaci za benefit.',
+    employerCostDesc: 'Kwota dofinansowania benefitu przez pracodawcę.',
     employeeCost: 'Koszt pracownika',
-    employeeCostDesc: 'Kwota, jaką pracownik płaci za benefit.',
+    employeeCostDesc: 'Kwota, jaką pracownik płaci za benefit. W przypadku auta służbowego do celów prywatnych pozostaw puste pole.',
     overallCost: 'Całkowity koszt benefitu',
     overallCostDesc: 'Kwota, jaką pracodawca płaci za benefit.',
     placeholder: 'Podaj kwotę PLN',
@@ -29,7 +28,7 @@ export default {
     placeholder: 'Podaj kwotę PLN',
   },
   dataForCalculations: {
-    title: 'Dane do wyliczenia',
+    title: 'Dane do wyliczeń',
     budget: {
       title: 'Budżet',
       description: 'Z jakiego budżetu finansowany jest benefit.',
@@ -46,10 +45,10 @@ export default {
   vehicle: {
     title: 'Auto służbowe',
     daysWithVehicle: 'Liczba dni',
-    daysWithVehicleDesc: 'Liczba dni w których pracownik korzystał z auta.',
+    daysWithVehicleDesc: 'Liczba dni w których pracownik korzystał z auta do celów prywatnych.',
     placeholder: 'Podaj liczbę dni',
     isVehicle: {
-      title: 'Auto służbowe',
+      title: 'Auto służbowe do celów prywatnych',
       description: 'Czy pracownik używa auto służbowe?',
     },
     engine: {

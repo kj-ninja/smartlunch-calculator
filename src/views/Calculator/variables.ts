@@ -44,8 +44,8 @@ export const dataForCalculations = [
     section: 'dataForCalculations',
     name: 'tax',
     optionA: {
-      value: 0.18,
-      content: '18%',
+      value: 0.17,
+      content: '17%',
     },
     optionB: {
       value: 0.32,

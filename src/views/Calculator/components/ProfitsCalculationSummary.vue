@@ -80,11 +80,17 @@ export default defineComponent({
       }
 
       if (meals.value) {
-        if (employerCost.value < 190 || employerCost.value < 190) {
+        if (employerCost.value <= 190) {
           return 0;
         }
         // eslint-disable-next-line max-len
         zus = (employerCost.value - 190) * 0.1371 + (employerCost.value - ((employerCost.value * 0.1371) * 0.09));
+        return +zus.toFixed(2);
+      }
+
+      if (isVehicle.value) {
+        // eslint-disable-next-line max-len
+        zus = employerCost.value * 0.1371 + (employerCost.value - ((employerCost.value * 0.1371) * 0.09));
         return +zus.toFixed(2);
       }
 
@@ -97,14 +103,22 @@ export default defineComponent({
     }
 
     function calculateDeductedTax() {
+      let taxAmount: number;
       if (budget.value === 'zfss') {
         if (employerCost.value >= 0 && employerCost.value <= 2000) {
           return 0;
         }
-        return employerCost.value - 2000 * tax.value;
+
+        taxAmount = (employerCost.value - 2000) * tax.value;
+        return +taxAmount.toFixed(2);
       }
 
-      const taxAmount = employerCost.value * tax.value;
+      if (isVehicle.value) {
+        taxAmount = employerCost.value * tax.value;
+        return +taxAmount.toFixed(2);
+      }
+
+      taxAmount = employeeCost.value * tax.value;
       return +taxAmount.toFixed(2);
     }
 

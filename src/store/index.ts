@@ -79,6 +79,10 @@ export default createStore<State>({
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         state.vehicle[payload.name] = payload.value;
+        if (payload.name === 'isVehicle' && payload.value) {
+          state.benefitCosts.employeeCost = 0;
+        }
+
         if (!payload.value) {
           state.vehicle.engine = null;
           state.vehicle.daysWithVehicle = null;

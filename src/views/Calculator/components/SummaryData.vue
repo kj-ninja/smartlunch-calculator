@@ -10,7 +10,7 @@
       <span class="">{{ $t('calculator.summary.employeeSalary') }}:</span>
 
       <span class="text-primary font-600 pl-4">
-        {{ `${employeesNetSalaryWithBenefit} ${$t('calculator.currency')}` }}
+        {{ `${employeesNetSalaryWithBenefit.toFixed(2)} ${$t('calculator.currency')}` }}
       </span>
     </div>
 
@@ -18,7 +18,7 @@
       <span class="">{{ $t('calculator.summary.zusCost') }}:</span>
 
       <span class="text-secondary font-600 pl-4">
-        {{ `${deductedZus} ${$t('calculator.currency')}` }}
+        {{ `${deductedZus.toFixed(2)} ${$t('calculator.currency')}` }}
       </span>
     </div>
 
@@ -26,7 +26,7 @@
       <span class="">{{ $t('calculator.summary.taxAmount') }}:</span>
 
       <span class="text-secondary font-600 pl-4">
-        {{ `${deductedTax} ${$t('calculator.currency')}` }}
+        {{ `${deductedTax.toFixed(2)} ${$t('calculator.currency')}` }}
       </span>
     </div>
   </div>
