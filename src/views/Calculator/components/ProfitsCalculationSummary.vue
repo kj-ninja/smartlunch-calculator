@@ -1,43 +1,43 @@
 <template>
-    <div class="w-full max-w-500 mx-auto px-8 md:mx-0 order-6 flex flex-col relative">
-      <h2 class="text-16 text-center font-600 mb-32">
-        {{
-          isCalculationValid ?
-            $t('calculator.summary.employeeProfits') :
-            $t('calculator.summary.title')
-        }}
-      </h2>
+  <div class="w-full max-w-500 mx-auto px-8 md:mx-0 order-6 flex flex-col relative">
+    <h2 class="text-16 text-center font-600 mb-32">
+      {{
+        isCalculationValid ?
+          $t('calculator.summary.employeeProfits') :
+          $t('calculator.summary.title')
+      }}
+    </h2>
 
-      <transition name="fade-summary" mode="out-in">
-        <SummaryData v-if="isCalculationValid"
-                     :name="benefitName"
-                     :deductedZus="deductedZus"
-                     :deductedTax="deductedTax"/>
+    <transition name="fade-summary" mode="out-in">
+      <SummaryData v-if="isCalculationValid"
+                   :name="benefitName"
+                   :deductedZus="deductedZus"
+                   :deductedTax="deductedTax"/>
 
-        <div class="relative w-1/2 h-208 mx-auto" v-else>
-          <div id="b1" class="box" :class="{'ani1': isAnimate}"></div>
-          <div id="b2" class="box" :class="{'ani2': isAnimate}"></div>
-          <div id="b3" class="box" :class="{'ani3': isAnimate}"></div>
-          <div id="b4" class="box" :class="{'ani4': isAnimate}"></div>
-        </div>
-      </transition>
-
-      <button @click="calculateProfits"
-              class="bg-secondary text-white w-216 rounded-full py-12 px-6 font-600
-                  focus:outline-none mx-auto mt-24 mb-28 shadow-button">
-        {{
-          isCalculationValid ?
-            $t('calculator.summary.calculateAgain') :
-            $t('calculator.summary.calculate')
-        }}
-      </button>
-
-      <div class="hidden md:block w-200 self-end mt-16">
-        <img class="w-full z-10" :src="require('../../../assets/grupa.svg')" alt="">
+      <div class="relative w-1/2 h-208 mx-auto" v-else>
+        <div id="b1" class="box" :class="{'ani1': isAnimate}"></div>
+        <div id="b2" class="box" :class="{'ani2': isAnimate}"></div>
+        <div id="b3" class="box" :class="{'ani3': isAnimate}"></div>
+        <div id="b4" class="box" :class="{'ani4': isAnimate}"></div>
       </div>
+    </transition>
 
-      <svg class="absolute hidden md:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FFAB00" fill-opacity="1" d="M0,320L24,272C48,224,96,128,144,117.3C192,107,240,181,288,176C336,171,384,85,432,58.7C480,32,528,64,576,64C624,64,672,32,720,16C768,0,816,0,864,48C912,96,960,192,1008,218.7C1056,245,1104,203,1152,202.7C1200,203,1248,245,1296,266.7C1344,288,1392,288,1416,288L1440,288L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"></path></svg>
+    <button @click="calculateProfits"
+            class="bg-secondary text-white w-216 rounded-full py-12 px-6 font-600
+                  focus:outline-none mx-auto mt-24 mb-28 shadow-button">
+      {{
+        isCalculationValid ?
+          $t('calculator.summary.calculateAgain') :
+          $t('calculator.summary.calculate')
+      }}
+    </button>
+
+    <div class="hidden md:block w-200 self-end mt-16">
+      <img class="w-full z-10" :src="require('../../../assets/grupa.svg')" alt="">
     </div>
+
+    <svg class="absolute hidden md:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FFAB00" fill-opacity="1" d="M0,320L24,272C48,224,96,128,144,117.3C192,107,240,181,288,176C336,171,384,85,432,58.7C480,32,528,64,576,64C624,64,672,32,720,16C768,0,816,0,864,48C912,96,960,192,1008,218.7C1056,245,1104,203,1152,202.7C1200,203,1248,245,1296,266.7C1344,288,1392,288,1416,288L1440,288L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"></path></svg>
+  </div>
 </template>
 
 <script lang="ts">
@@ -70,7 +70,7 @@ export default defineComponent({
     const isAnimate = computed(() => store.state.calculations.isAnimate);
 
     // eslint-disable-next-line max-len
-    const isValid = computed(() => (employerCost.value && employeeCost.value && netSalary.value && budget.value && meals.value && tax.value) !== null && (isVehicle.value === false || (isVehicle.value && engine.value && daysWithVehicle.value)));
+    const isValid = computed(() => ((benefitName.value) && (employerCost.value !== null && employeeCost.value !== null) && (netSalary.value !== null) && (budget.value !== null && meals.value !== null && tax.value !== null) && (isVehicle.value === false || (isVehicle.value && engine.value && daysWithVehicle.value))));
 
     function calculateDeductedZus() {
       let zus: number;
@@ -90,7 +90,7 @@ export default defineComponent({
 
       if (isVehicle.value) {
         // eslint-disable-next-line max-len
-        zus = employerCost.value * 0.1371 + (employerCost.value - ((employerCost.value * 0.1371) * 0.09));
+        zus = employerCost.value * 0.1371 + (employerCost.value - (employerCost.value * 0.1371)) * 0.09;
         return +zus.toFixed(2);
       }
 
@@ -98,7 +98,7 @@ export default defineComponent({
         return 0;
       }
       // eslint-disable-next-line max-len
-      zus = employerCost.value * 0.1371 + (employerCost.value - ((employerCost.value * 0.1371) * 0.09));
+      zus = employerCost.value * 0.1371 + (employerCost.value - (employerCost.value * 0.1371)) * 0.09;
       return +zus.toFixed(2);
     }
 
@@ -141,29 +141,36 @@ export default defineComponent({
     }
 
     function calculateProfits() {
+      console.log('TEST: ', isValid.value);
+      console.log('liczymy?');
       if (!benefitName.value) {
+        console.log('nie ma nazwy benefitu');
         setupErrors(store, 'benefitName');
       }
 
       if (employerCost.value === null || employeeCost.value === null) {
+        console.log('nie ma kosztow pracownika albo pracodawcy');
         setupErrors(store, 'costs');
       }
 
       if (!netSalary.value) {
+        console.log('nie ma wynagrodzenia');
         setupErrors(store, 'salary');
       }
 
       if (!budget.value || meals.value === null || !tax.value) {
+        console.log('nie ma budzetu albo posilku albo podatku');
         setupErrors(store, 'data');
       }
 
       // eslint-disable-next-line max-len
       if (isVehicle.value === null || (isVehicle.value === true && (!engine.value || daysWithVehicle.value === null))) {
+        console.log('pojazdy tez lipa');
         setupErrors(store, 'vehicle');
       }
 
-      // eslint-disable-next-line max-len
       if (isValid.value) {
+        console.log('jakims cudem isValid = true!?');
         store.commit('setAnimateValid', true);
         setTimeout(() => {
           store.commit('setCalculationValid', true);
@@ -192,6 +199,8 @@ export default defineComponent({
       isCalculationValid,
       benefitName,
       isAnimate,
+      store,
+      isValid,
     };
   },
 });

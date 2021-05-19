@@ -62,15 +62,10 @@ export default createStore<State>({
           // @ts-ignore
           state.salary[payload.name] = +payload.value;
           break;
-        case 'vehicle':
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          state.vehicle[payload.name] = +payload.value;
-          break;
         default:
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
-          state.dataForCalculations.daysWithVehicle = +payload.value;
+          state.vehicle.daysWithVehicle = +payload.value;
           break;
       }
     },
