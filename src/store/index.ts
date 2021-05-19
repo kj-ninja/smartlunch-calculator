@@ -79,14 +79,29 @@ export default createStore<State>({
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         state.vehicle[payload.name] = payload.value;
+
         if (payload.name === 'isVehicle' && payload.value) {
           state.benefitCosts.employeeCost = 0;
+          state.benefitCosts.employerCost = 0;
+
+          if (state.dataForCalculations.meals) {
+            state.dataForCalculations.meals = false;
+          }
         }
 
         if (!payload.value) {
           state.vehicle.engine = null;
           state.vehicle.daysWithVehicle = null;
         }
+      }
+
+      if (payload.name === 'meals' && payload.value) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        state.dataForCalculations.meals = payload.value;
+        state.vehicle.isVehicle = false;
+        state.vehicle.engine = null;
+        state.vehicle.daysWithVehicle = null;
       } else {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

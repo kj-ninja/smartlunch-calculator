@@ -84,7 +84,7 @@ export default defineComponent({
           return 0;
         }
         // eslint-disable-next-line max-len
-        zus = (employerCost.value - 190) * 0.1371 + (employerCost.value - ((employerCost.value * 0.1371) * 0.09));
+        zus = (employerCost.value - 190) * 0.1371 + ((employerCost.value - 190) - ((employerCost.value - 190) * 0.1371)) * 0.09;
         return +zus.toFixed(2);
       }
 
@@ -113,7 +113,7 @@ export default defineComponent({
         return +taxAmount.toFixed(2);
       }
 
-      if (isVehicle.value) {
+      if (isVehicle.value || meals.value) {
         taxAmount = employerCost.value * tax.value;
         return +taxAmount.toFixed(2);
       }

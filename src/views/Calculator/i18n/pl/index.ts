@@ -14,7 +14,7 @@ export default {
   benefitCosts: {
     title: 'Koszty benefitu',
     employerCost: 'Koszt pracodawcy',
-    employerCostDesc: 'Kwota dofinansowania benefitu przez pracodawcę.',
+    employerCostDesc: 'Kwota dofinansowania benefitu przez pracodawcę. W przypadku auta służbowego do celów prywatnych pozostaw puste pole',
     employeeCost: 'Koszt pracownika',
     employeeCostDesc: 'Kwota, jaką pracownik płaci za benefit. W przypadku auta służbowego do celów prywatnych pozostaw puste pole.',
     overallCost: 'Całkowity koszt benefitu',
