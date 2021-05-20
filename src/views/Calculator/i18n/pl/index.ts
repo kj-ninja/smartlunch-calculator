@@ -35,7 +35,11 @@ export default {
     },
     meals: {
       title: 'Dofinansowanie posiłków',
-      description: 'Czy benefitem jest dofinansowanie do posiłku.',
+      description: 'Czy benefitem jest dofinansowanie do posiłku?',
+    },
+    bon: {
+      title: 'Bony',
+      description: 'Czy benefit jest bonem?',
     },
     tax: {
       title: 'Podatek',

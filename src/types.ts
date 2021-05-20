@@ -16,6 +16,7 @@ export interface State {
   dataForCalculations: {
     budget: null | string,
     meals: null | boolean,
+    bon: null | boolean,
     tax: null | string,
     dataForCalculationsError: null | boolean,
   },

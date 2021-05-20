@@ -42,6 +42,18 @@ export const dataForCalculations = [
   },
   {
     section: 'dataForCalculations',
+    name: 'bon',
+    optionA: {
+      value: true,
+      content: 'TAK',
+    },
+    optionB: {
+      value: false,
+      content: 'NIE',
+    },
+  },
+  {
+    section: 'dataForCalculations',
     name: 'tax',
     optionA: {
       value: 0.17,

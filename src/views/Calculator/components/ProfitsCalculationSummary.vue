@@ -63,6 +63,7 @@ export default defineComponent({
     const isVehicle = computed(() => store.state.vehicle.isVehicle);
     const engine = computed(() => store.state.vehicle.engine);
     const daysWithVehicle = computed(() => store.state.vehicle.daysWithVehicle);
+    const isBon = computed(() => store.state.dataForCalculations.bon);
 
     const deductedZus = computed(() => store.state.calculations.deductedZus);
     const deductedTax = computed(() => store.state.calculations.deductedTax);
@@ -70,7 +71,7 @@ export default defineComponent({
     const isAnimate = computed(() => store.state.calculations.isAnimate);
 
     // eslint-disable-next-line max-len
-    const isValid = computed(() => ((benefitName.value) && (employerCost.value !== null && employeeCost.value !== null) && (netSalary.value !== null) && (budget.value !== null && meals.value !== null && tax.value !== null) && (isVehicle.value === false || (isVehicle.value && engine.value && daysWithVehicle.value))));
+    const isValid = computed(() => benefitName.value && employerCost.value !== null && employeeCost.value !== null && netSalary.value !== null && budget.value !== null && meals.value !== null && tax.value !== null && isBon.value !== null && (isVehicle.value === false || (isVehicle.value !== null && engine.value !== null && daysWithVehicle.value !== null)));
 
     function calculateDeductedZus() {
       let zus: number;
@@ -104,6 +105,12 @@ export default defineComponent({
 
     function calculateDeductedTax() {
       let taxAmount: number;
+
+      if (isBon.value) {
+        taxAmount = employerCost.value * tax.value;
+        return +taxAmount.toFixed(2);
+      }
+
       if (budget.value === 'zfss') {
         if (employerCost.value >= 0 && employerCost.value <= 2000) {
           return 0;
@@ -141,36 +148,28 @@ export default defineComponent({
     }
 
     function calculateProfits() {
-      console.log('TEST: ', isValid.value);
-      console.log('liczymy?');
       if (!benefitName.value) {
-        console.log('nie ma nazwy benefitu');
         setupErrors(store, 'benefitName');
       }
 
       if (employerCost.value === null || employeeCost.value === null) {
-        console.log('nie ma kosztow pracownika albo pracodawcy');
         setupErrors(store, 'costs');
       }
 
       if (!netSalary.value) {
-        console.log('nie ma wynagrodzenia');
         setupErrors(store, 'salary');
       }
 
-      if (!budget.value || meals.value === null || !tax.value) {
-        console.log('nie ma budzetu albo posilku albo podatku');
+      if (!budget.value || meals.value === null || !tax.value || isBon.value === null) {
         setupErrors(store, 'data');
       }
 
       // eslint-disable-next-line max-len
       if (isVehicle.value === null || (isVehicle.value === true && (!engine.value || daysWithVehicle.value === null))) {
-        console.log('pojazdy tez lipa');
         setupErrors(store, 'vehicle');
       }
 
       if (isValid.value) {
-        console.log('jakims cudem isValid = true!?');
         store.commit('setAnimateValid', true);
         setTimeout(() => {
           store.commit('setCalculationValid', true);
