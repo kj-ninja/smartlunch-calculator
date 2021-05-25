@@ -125,7 +125,7 @@ export default defineComponent({
         return +taxAmount.toFixed(2);
       }
 
-      taxAmount = employeeCost.value * tax.value;
+      taxAmount = employerCost.value * tax.value;
       return +taxAmount.toFixed(2);
     }
 
