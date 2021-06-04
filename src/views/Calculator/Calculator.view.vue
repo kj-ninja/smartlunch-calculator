@@ -13,7 +13,7 @@
     <div class="w-full md:w-7/20 flex flex-col items-center relative">
       <DataForCalculations/>
 
-      <EngineOption/>
+<!--      <EngineOption/>-->
 
       <div class="xl:border xl:border-gray-200 xl:bg-gray-200 xl:absolute
                  xl:left-0 lg:h-5/6 top-36"/>
@@ -33,7 +33,7 @@ import { defineComponent } from 'vue';
 import Header from '@/views/Calculator/components/Header.vue';
 import BenefitCosts from '@/views/Calculator/components/BenefitCosts.vue';
 import DataForCalculations from '@/views/Calculator/components/DataForCalculations.vue';
-import EngineOption from '@/views/Calculator/components/EngineOption.vue';
+// import EngineOption from '@/views/Calculator/components/EngineOption.vue';
 import ProfitsCalculationSummary from '@/views/Calculator/components/ProfitsCalculationSummary.vue';
 import Salary from '@/views/Calculator/components/Salary.vue';
 import BenefitName from '@/views/Calculator/components/BenefitName.vue';
@@ -41,7 +41,7 @@ import BenefitName from '@/views/Calculator/components/BenefitName.vue';
 export default defineComponent({
   components: {
     BenefitName,
-    EngineOption,
+    // EngineOption,
     Salary,
     ProfitsCalculationSummary,
     Header,

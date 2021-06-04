@@ -71,7 +71,9 @@ export default defineComponent({
     const isAnimate = computed(() => store.state.calculations.isAnimate);
 
     // eslint-disable-next-line max-len
-    const isValid = computed(() => benefitName.value && employerCost.value !== null && employeeCost.value !== null && netSalary.value !== null && budget.value !== null && meals.value !== null && tax.value !== null && isBon.value !== null && (isVehicle.value === false || (isVehicle.value !== null && engine.value !== null && daysWithVehicle.value !== null)));
+    const isValid = computed(() => benefitName.value && employerCost.value !== null && employeeCost.value !== null && netSalary.value !== null && budget.value !== null && meals.value !== null && tax.value !== null && isBon.value !== null);
+    // eslint-disable-next-line max-len
+    // && (isVehicle.value === false || (isVehicle.value !== null && engine.value !== null && daysWithVehicle.value !== null)
 
     function calculateDeductedZus() {
       let zus: number;
@@ -165,9 +167,9 @@ export default defineComponent({
       }
 
       // eslint-disable-next-line max-len
-      if (isVehicle.value === null || (isVehicle.value === true && (!engine.value || daysWithVehicle.value === null))) {
-        setupErrors(store, 'vehicle');
-      }
+      // if (isVehicle.value === null || (isVehicle.value === true && (!engine.value || daysWithVehicle.value === null))) {
+      //   setupErrors(store, 'vehicle');
+      // }
 
       if (isValid.value) {
         store.commit('setAnimateValid', true);
