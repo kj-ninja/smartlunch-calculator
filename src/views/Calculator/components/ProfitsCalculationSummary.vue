@@ -87,7 +87,7 @@ export default defineComponent({
           return 0;
         }
         // eslint-disable-next-line max-len
-        zus = (employerCost.value - 190) * 0.1371 + ((employerCost.value - 190) - ((employerCost.value - 190) * 0.1371)) * 0.09;
+        zus = (employerCost.value - 190) * 0.1371;
         return +zus.toFixed(2);
       }
 
@@ -101,7 +101,7 @@ export default defineComponent({
         return 0;
       }
       // eslint-disable-next-line max-len
-      zus = employerCost.value * 0.1371 + (employerCost.value - (employerCost.value * 0.1371)) * 0.09;
+      zus = employerCost.value * 0.1371;
       return +zus.toFixed(2);
     }
 
@@ -109,8 +109,10 @@ export default defineComponent({
       let taxAmount: number;
 
       if (isBon.value) {
-        taxAmount = employerCost.value * tax.value;
-        return +taxAmount.toFixed(2);
+        // eslint-disable-next-line max-len
+        taxAmount = (employerCost.value - (employerCost.value * 0.1371)) * tax.value - (employerCost.value - (employerCost.value * 0.1371)) * 0.0775;
+        taxAmount = +taxAmount.toFixed(2);
+        return Math.ceil(taxAmount);
       }
 
       if (budget.value === 'zfss') {
@@ -118,17 +120,23 @@ export default defineComponent({
           return 0;
         }
 
-        taxAmount = (employerCost.value - 2000) * tax.value;
-        return +taxAmount.toFixed(2);
+        // eslint-disable-next-line max-len
+        taxAmount = ((employerCost.value - 2000) - ((employerCost.value - 2000) * 0.1371)) * tax.value - ((employerCost.value - 2000) - ((employerCost.value - 2000) * 0.1371)) * 0.0775;
+        taxAmount = +taxAmount.toFixed(2);
+        return Math.ceil(taxAmount);
       }
 
       if (isVehicle.value || meals.value) {
-        taxAmount = employerCost.value * tax.value;
-        return +taxAmount.toFixed(2);
+        // eslint-disable-next-line max-len
+        taxAmount = (employerCost.value - (employerCost.value * 0.1371)) * tax.value - (employerCost.value - (employerCost.value * 0.1371)) * 0.0775;
+        taxAmount = +taxAmount.toFixed(2);
+        return Math.ceil(taxAmount);
       }
 
-      taxAmount = employerCost.value * tax.value;
-      return +taxAmount.toFixed(2);
+      // eslint-disable-next-line max-len
+      taxAmount = (employerCost.value - (employerCost.value * 0.1371)) * tax.value - (employerCost.value - (employerCost.value * 0.1371)) * 0.0775;
+      taxAmount = +taxAmount.toFixed(2);
+      return Math.ceil(taxAmount);
     }
 
     function calculateEmployeesNetSalaryWithBenefit() {
