@@ -110,7 +110,7 @@ export default defineComponent({
 
       if (isBon.value) {
         // eslint-disable-next-line max-len
-        taxAmount = (employerCost.value - (employerCost.value * 0.1371)) * tax.value - (employerCost.value - (employerCost.value * 0.1371)) * 0.0775;
+        taxAmount = employerCost.value * tax.value;
         taxAmount = +taxAmount.toFixed(2);
         return Math.ceil(taxAmount);
       }
@@ -121,7 +121,7 @@ export default defineComponent({
         }
 
         // eslint-disable-next-line max-len
-        taxAmount = ((employerCost.value - 2000) - ((employerCost.value - 2000) * 0.1371)) * tax.value - ((employerCost.value - 2000) - ((employerCost.value - 2000) * 0.1371)) * 0.0775;
+        taxAmount = (employerCost.value - 2000) * tax.value;
         taxAmount = +taxAmount.toFixed(2);
         return Math.ceil(taxAmount);
       }
