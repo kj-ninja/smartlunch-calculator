@@ -1,8 +1,6 @@
 <template>
   <div class="w-full text-primaryText flex flex-col items-center md:items-start
               mb-32 max-w-1550 md:mx-auto md:px-16">
-    <span>v.1.7</span>
-
     <h1 class="text-32 font-600 md:text-44 mb-5 leading-15 mt-6">
       {{ $t('calculator.header.title') }}
     </h1>
