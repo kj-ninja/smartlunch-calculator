@@ -36,7 +36,17 @@
       <img class="w-full z-10" :src="require('../../../assets/grupa.svg')" alt="">
     </div>
 
-    <svg class="absolute hidden md:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FFAB00" fill-opacity="1" d="M0,320L24,272C48,224,96,128,144,117.3C192,107,240,181,288,176C336,171,384,85,432,58.7C480,32,528,64,576,64C624,64,672,32,720,16C768,0,816,0,864,48C912,96,960,192,1008,218.7C1056,245,1104,203,1152,202.7C1200,203,1248,245,1296,266.7C1344,288,1392,288,1416,288L1440,288L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"></path></svg>
+    <svg class="absolute hidden md:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#FFAB00" fill-opacity="1"
+            d="M0,320L24,272C48,224,96,128,144,117.3C192,107,240,181,288,176C336,171,384,85,432,
+            58.7C480,32,528,64,576,64C624,64,672,32,720,16C768,0,816,0,864,48C912,96,960,192,1008,
+            218.7C1056,245,1104,203,1152,202.7C1200,203,1248,245,1296,266.7C1344,288,1392,288,
+            1416,288L1440,288L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,
+            320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,
+            624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,
+            320C96,320,48,320,24,320L0,320Z">
+      </path>
+    </svg>
   </div>
 </template>
 
@@ -109,8 +119,13 @@ export default defineComponent({
       let taxAmount: number;
 
       if (isBon.value) {
+        if (budget.value === 'zfss') {
+          taxAmount = employerCost.value * tax.value;
+          taxAmount = +taxAmount.toFixed(2);
+          return Math.ceil(taxAmount);
+        }
         // eslint-disable-next-line max-len
-        taxAmount = employerCost.value * tax.value;
+        taxAmount = (employerCost.value - (employerCost.value * 0.1371)) * tax.value - (employerCost.value - (employerCost.value * 0.1371)) * 0.0775;
         taxAmount = +taxAmount.toFixed(2);
         return Math.ceil(taxAmount);
       }
@@ -119,7 +134,6 @@ export default defineComponent({
         if (employerCost.value >= 0 && employerCost.value <= 2000) {
           return 0;
         }
-
         // eslint-disable-next-line max-len
         taxAmount = (employerCost.value - 2000) * tax.value;
         taxAmount = +taxAmount.toFixed(2);
@@ -263,35 +277,95 @@ svg {
 }
 
 @keyframes moveAss1 {
-  0%   {top: 0; left: 55px;}
-  25%   {top: 5px; left: 99px;}
-  50%   {top: 119px; left: 65px;}
-  75%   {top: 10px; left: 32px;}
-  100%   {top: 0; left: 95px;}
+  0% {
+    top: 0;
+    left: 55px;
+  }
+  25% {
+    top: 5px;
+    left: 99px;
+  }
+  50% {
+    top: 119px;
+    left: 65px;
+  }
+  75% {
+    top: 10px;
+    left: 32px;
+  }
+  100% {
+    top: 0;
+    left: 95px;
+  }
 }
 
 @keyframes moveAss2 {
-  0%   {top: 68px; left: 0;}
-  25%   {top: 66px; left: 10px;}
-  50%   {top: 20px; left: 148px;}
-  75%   {top: 120px; left: 82px;}
-  100%   {top: 83px; left: 23px;}
+  0% {
+    top: 68px;
+    left: 0;
+  }
+  25% {
+    top: 66px;
+    left: 10px;
+  }
+  50% {
+    top: 20px;
+    left: 148px;
+  }
+  75% {
+    top: 120px;
+    left: 82px;
+  }
+  100% {
+    top: 83px;
+    left: 23px;
+  }
 }
 
 @keyframes moveAss3 {
-  0%   {top: 160px; left: 80px;}
-  25%   {top: 150px; left: 88px;}
-  50%   {top: 20px; left: 99px;}
-  75%   {top: 49px; left: 142px;}
-  100%   {top: 160px; left: 80px;}
+  0% {
+    top: 160px;
+    left: 80px;
+  }
+  25% {
+    top: 150px;
+    left: 88px;
+  }
+  50% {
+    top: 20px;
+    left: 99px;
+  }
+  75% {
+    top: 49px;
+    left: 142px;
+  }
+  100% {
+    top: 160px;
+    left: 80px;
+  }
 }
 
 @keyframes moveAss4 {
-  0%   {top: 138px; left: 44px;}
-  25%   {top: 0; left: 60px;}
-  50%   {top: 90px; left: 120px;}
-  75%   {top: 99px; left: 128px;}
-  100%   {top: 120px; left: 134px;}
+  0% {
+    top: 138px;
+    left: 44px;
+  }
+  25% {
+    top: 0;
+    left: 60px;
+  }
+  50% {
+    top: 90px;
+    left: 120px;
+  }
+  75% {
+    top: 99px;
+    left: 128px;
+  }
+  100% {
+    top: 120px;
+    left: 134px;
+  }
 }
 
 #b1 {
